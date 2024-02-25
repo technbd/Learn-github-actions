@@ -1,0 +1,48 @@
+### Metadata: 
+    name: Demo Workflow
+    run-name: ${{ github.actor }} is Demo Workflow
+    
+    ### Events: Triggers the workflow on push or pull request events but only for the "master" branch:
+    on: [push]
+      # push:
+      #   branches:
+      #     - master
+      # pull_request:
+      #   branches: [ "master" ]
+    
+    
+    ### A workflow run is made up of one or more jobs that can run sequentially or in parallel:
+    jobs:
+      install-make-pkg: ### Workflow job name "job1":
+    
+        ### Type of runner that the job will run: 
+        runs-on: ubuntu-latest
+    
+        ### Steps represent a sequence of tasks that will be executed as part of the job:
+        steps:
+        
+          ### Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it:
+          - name:  Check out repository
+            uses: actions/checkout@v2
+    
+          ### An optional "name" attribute and used to identify each action:
+          - name: Install dependencies ### Run a one-line script:
+            run: echo "Hello, world!"
+    
+          - name: Install dependencies  ### Runs a set of commands: 
+            shell: bash
+            run: |
+              sudo apt update
+              sudo apt install make
+              make --version
+              echo "make installed...done"
+    
+          - name: Install dependencies ### Runs a set of commands:
+            run: |
+              pwd
+              ls 
+    
+    
+
+    
+    
