@@ -1,0 +1,29 @@
+name: multi-environments-workflow
+run-name: ${{ github.actor }} is multi-environments-workflow CI
+
+on: [push]
+
+jobs:
+  windows-job:  ### job1
+    runs-on: windows-latest
+
+    steps:
+      - name: running in windows "powershell"
+        shell: pwsh
+        run: Get-Location
+
+  macos-job:  ### job2
+    runs-on: macos-latest
+
+    steps:
+      - name: running in mac
+        shell: bash
+        run: echo "Hello world"
+
+  linux-job:  ### job3
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: running in ubuntu
+        run: echo "Hello world"
+
