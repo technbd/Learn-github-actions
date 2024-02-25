@@ -21,7 +21,7 @@
         ### Steps represent a sequence of tasks that will be executed as part of the job:
         steps:
 
-          - name: Install dependencies ### Runs a set of commands:
+          - name:  Listing contents before checkout ### Runs a set of commands:
             run: |
               pwd
               ls 
@@ -42,7 +42,7 @@
               make --version
               echo "make installed...done"
     
-          - name: Install dependencies ### Runs a set of commands:
+          - name: Listing contents after checkout ### Runs a set of commands:
             run: |
               pwd
               ls 
