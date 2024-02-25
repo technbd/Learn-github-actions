@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        run: echo "checking out"
+        uses: actions/checkout@v2
 
       - name:  Listing contents 
         run: |
