@@ -90,6 +90,33 @@ Current runner version: '2.313.0'
 2024-02-27 06:34:24Z: Listening for Jobs
 ```
 
+Your self-hosted GitHub runner is now ready and you can check its status from the Runners section of your GitHub repository. 
+
+
+### Sudo Password:
+If the running is prompting for the user’s password in order to run sudo. Enter the password. Then runner now completes successfully. 
+
+
+The issue with the previous workflow pausing to receive password input is caused by sudo requiring the user to enter its password. This can be solved by removing the requirement for a password for this user to run sudo.
+
+```
+2024-02-27 09:51:17Z: Running job: install-make-pkg
+
+[sudo] password for idea:
+2024-02-27 09:52:12Z: Job install-make-pkg completed with result: Succeeded
+```
+
+
+```
+sudo visudo
+
+### Add the following line:
+<user_name>    ALL=(ALL) NOPASSWD:ALL
+```
+
+Run the workflow again and verify that a password is not required.
+
+
 
 ### Using your self-hosted runner:
 
@@ -98,6 +125,12 @@ Current runner version: '2.313.0'
 
 runs-on: self-hosted
 ```
+
+
+
+
+
+
 
 
 
