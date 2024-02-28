@@ -34,11 +34,12 @@
           - name: Build the Docker image 
             env: 
               IMAGE_NAME: nginx
-              IMAGE_TAG: v2
+              IMAGE_TAG: v3
 
             run: | 
               docker build -t $IMAGE_NAME:$IMAGE_TAG .
               docker images
+              echo "Image builded"
               docker tag $IMAGE_NAME:$IMAGE_TAG technbd/$IMAGE_NAME:$IMAGE_TAG
               docker images
 
@@ -47,9 +48,9 @@
           #     docker tag $IMAGE_NAME:$IMAGE_TAG technbd/$IMAGE_NAME:$IMAGE_TAG
           #     docker images
 
-          # - name: Login Docker Hub
-          #   run: |
-          #     docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
+          - name: Login Docker Hub
+            run: |
+              docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
             
 
           # - name: Docker image Push  
