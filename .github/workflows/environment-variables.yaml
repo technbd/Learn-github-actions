@@ -44,6 +44,7 @@
       job2: ### Workflow job name "job2"
         runs-on: self-hosted
 
+        ### Define environment variables specific to that job:
         env:
           ENV_VARIABLE_5: value_5
 
@@ -53,13 +54,28 @@
             run: |
               echo $ENV_GL_VARIABLE_2
 
-          - name: Job-2 Step-2  ### "ENV_VARIABLE_4" not within job2
+          - name: Job-2 Step-2  ### "ENV_VARIABLE_4" not within job2 variable
             run: |
               echo $ENV_VARIABLE_4  
 
           - name: Job-2 Step-3
             run: |
               echo $ENV_VARIABLE_5
+
+      job3: ### Workflow job name "job3"
+        runs-on: self-hosted
+
+        steps:
+
+          - name: Job-3 Step-1
+            env:  ### Each step defines its own environment variables 
+              ENV_VARIABLE_6: value_6
+            run: $ENV_VARIABLE_6
+
+          - name: Job-3 Step-2
+            env:  ### Each step defines its own environment variables 
+              ENV_VARIABLE_7: value_7
+            run:  $ENV_VARIABLE_7
 
 
 
