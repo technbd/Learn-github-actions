@@ -39,7 +39,7 @@
             env: 
               DOCKER_REPO: technbd
               IMAGE_NAME: nginx
-              IMAGE_TAG: v4
+              IMAGE_TAG: latest
               
             run: | 
               echo "Building Docker image $IMAGE_NAME:$IMAGE_TAG"
