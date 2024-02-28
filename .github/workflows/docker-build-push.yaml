@@ -31,8 +31,10 @@
               ls 
 
           ### An optional "name" attribute and used to identify each action:
-          - name: Build the Docker image ### Run a one-line script:
-            run: docker build -t nginx:v1 .
+          - name: Build the Docker image ### Runs a set of commands: 
+            run: | 
+              docker build -t nginx:v1 .
+              docker images
     
           - name: Docker image Push  ### Runs a set of commands: 
             shell: bash
