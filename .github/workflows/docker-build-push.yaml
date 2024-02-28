@@ -33,7 +33,7 @@
           ### An optional "name" attribute and used to identify each action:
           - name: Build the Docker image ### Runs a set of commands: 
             run: | 
-              docker build -t nginx:v1 .
+              docker build -t nginx:v2 .
               docker images
     
           - name: Docker image Push  ### Runs a set of commands: 
