@@ -1,0 +1,59 @@
+### Metadata: 
+    name: Docker-build-push
+    run-name: ${{ github.actor }} is Docker-build-push-CI
+    
+    on: 
+      push:
+        branches:
+          - master
+      # pull_request:
+      #   branches: [ "master" ]
+      
+      ### Allows you to run this workflow manually from the Actions tab
+      workflow_dispatch:
+
+    env: 
+      DOCKER_REPO: technbd
+      IMAGE_NAME: nginx
+      IMAGE_TAG: latest
+
+    jobs:
+      docker-build: ### Workflow job name "job1":
+    
+        runs-on: self-hosted
+    
+        steps:
+
+          - name:  Check out repository
+            uses: actions/checkout@v3
+    
+          - name:  Listing contents ### Runs a set of commands:
+            run: |
+              pwd
+              ls 
+
+          ### An optional "name" attribute and used to identify each action:
+          - name: Login Docker Hub
+            run: |
+              docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
+          
+          - name: Build the Docker image 
+            run: | 
+              echo "Building Docker image $IMAGE_NAME:$IMAGE_TAG"
+              docker build -t $IMAGE_NAME:$IMAGE_TAG .
+              docker images
+
+          - name: Tagging Docker image 
+            run: |
+              echo "Docker image tagging $DOCKER_REPO/$IMAGE_NAME:$IMAGE_TAG"
+              docker tag $IMAGE_NAME:$IMAGE_TAG $DOCKER_REPO/$IMAGE_NAME:$IMAGE_TAG
+              docker images
+
+          - name: Pushing the Docker image 
+            run: |
+              echo "Pushing Docker image $DOCKER_REPO/$IMAGE_NAME:$IMAGE_TAG"
+              docker push $DOCKER_REPO/$IMAGE_NAME:$IMAGE_TAG
+              echo "Docker image push...done"
+    
+    
+    
