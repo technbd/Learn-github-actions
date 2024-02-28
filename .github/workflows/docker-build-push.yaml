@@ -39,7 +39,7 @@
             run: | 
               docker build -t $IMAGE_NAME:$IMAGE_TAG .
               docker images
-              echo "Image builded"
+              echo "Image build Success..."
               docker tag $IMAGE_NAME:$IMAGE_TAG technbd/$IMAGE_NAME:$IMAGE_TAG
               docker images
 
@@ -53,11 +53,11 @@
               docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
             
 
-          # - name: Docker image Push  
-          #   shell: bash
-          #   run: |
-          #     docker push technbd/$IMAGE_NAME:$IMAGE_TAG
-          #     echo "Docker push...done"
+          - name: Docker image Push  
+            shell: bash
+            run: |
+              docker push technbd/$IMAGE_NAME:$IMAGE_TAG
+              echo "Docker push...done"
     
 
     
