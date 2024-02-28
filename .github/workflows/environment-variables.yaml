@@ -14,8 +14,8 @@
 
     ### Global environment variables:
     env: 
-      ENV_VARIABLE_1: value_1
-      ENV_VARIABLE_2: value_2
+      ENV_GL_VARIABLE_1: value_1
+      ENV_GL_VARIABLE_2: value_2
       
     jobs:
       job1: ### Workflow job name "job1"
@@ -30,12 +30,17 @@
         steps:
 
           - name: Job-1 Step-1
-            run: echo $ENV_VARIABLE_1
+            run: echo $ENV_GL_VARIABLE_1
     
           - name: Job-1 Step-2
             run: |
               echo $ENV_VARIABLE_3
 
+          - name: Job-1 Step-3
+            run: |
+              echo $ENV_VARIABLE_4
+
+              
       job2: ### Workflow job name "job2"
         runs-on: self-hosted
 
@@ -46,12 +51,15 @@
 
           - name: Job-2 Step-1
             run: |
-              echo $ENV_VARIABLE_2
+              echo $ENV_GL_VARIABLE_2
 
           - name: Job-2 Step-2
             run: |
               echo $ENV_VARIABLE_4
 
+          - name: Job-2 Step-3
+            run: |
+              echo $ENV_VARIABLE_5
 
 
 
