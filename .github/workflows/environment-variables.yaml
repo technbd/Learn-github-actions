@@ -70,12 +70,14 @@
           - name: Job-3 Step-1
             env:  ### Each step defines its own environment variables 
               ENV_VARIABLE_6: value_6
-            run: $ENV_VARIABLE_6
+            run: echo $ENV_VARIABLE_6
 
           - name: Job-3 Step-2
             env:  ### Each step defines its own environment variables 
               ENV_VARIABLE_7: value_7
-            run:  $ENV_VARIABLE_7
+            run: | 
+              echo $ENV_GL_VARIABLE_1
+              echo $ENV_VARIABLE_7
 
 
 
