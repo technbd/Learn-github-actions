@@ -40,7 +40,7 @@
             run: |
               echo $ENV_VARIABLE_4
 
-              
+
       job2: ### Workflow job name "job2"
         runs-on: self-hosted
 
@@ -53,9 +53,9 @@
             run: |
               echo $ENV_GL_VARIABLE_2
 
-          - name: Job-2 Step-2
+          - name: Job-2 Step-2  ### "ENV_VARIABLE_4" not within job2
             run: |
-              echo $ENV_VARIABLE_4
+              echo $ENV_VARIABLE_4  
 
           - name: Job-2 Step-3
             run: |
