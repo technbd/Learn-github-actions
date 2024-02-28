@@ -1,6 +1,6 @@
 ### Metadata: 
-    name: Docker-project
-    run-name: ${{ github.actor }} is Docker-project CI
+    name: Docker-build-push
+    run-name: ${{ github.actor }} is Docker-build-push-CI
     
     on: 
       push:
@@ -33,21 +33,25 @@
           ### An optional "name" attribute and used to identify each action:
           - name: Login Docker Hub
             run: |
-              docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
+              docker login -u ${ secrets.DOCKER_USERNAME } -p ${ secrets.DOCKER_TOKEN }
           
-          - name: Build the Docker image 
+          - name: Build and push Docker image 
             env: 
+              DOCKER_REPO: technbd
               IMAGE_NAME: nginx
-              IMAGE_TAG: v3
-
+              IMAGE_TAG: v4
+              
             run: | 
+              echo "Building Docker image $IMAGE_NAME:$IMAGE_TAG"
               docker build -t $IMAGE_NAME:$IMAGE_TAG .
               docker images
-              echo "Image build Success..."
-              docker tag $IMAGE_NAME:$IMAGE_TAG technbd/$IMAGE_NAME:$IMAGE_TAG
+
+              docker tag $IMAGE_NAME:$IMAGE_TAG $DOCKER_REPO/$IMAGE_NAME:$IMAGE_TAG
               docker images
-              docker push technbd/$IMAGE_NAME:$IMAGE_TAG
-              echo "Docker push...done"
+
+              echo "Pushing Docker image $DOCKER_REPO/$IMAGE_NAME:$IMAGE_TAG"
+              docker push $DOCKER_REPO/$IMAGE_NAME:$IMAGE_TAG
+              echo "Docker image push...done"
     
 
     
