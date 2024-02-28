@@ -1,0 +1,59 @@
+### Metadata: 
+    name: environment-variables
+    run-name: ${{ github.actor }} is environment-variables-CI
+    
+    on: 
+      push:
+        branches:
+          - master
+      # pull_request:
+      #   branches: [ "master" ]
+      
+      ### Allows you to run this workflow manually from the Actions tab
+      workflow_dispatch:
+
+    ### Global environment variables:
+    env: 
+      ENV_VARIABLE_1: value_1
+      ENV_VARIABLE_2: value_2
+      
+    jobs:
+      job1: ### Workflow job name "job1"
+    
+        runs-on: self-hosted
+
+        ### Define environment variables specific to that job:
+        env:
+          ENV_VARIABLE_3: value_3
+          ENV_VARIABLE_4: value_4
+
+        steps:
+
+          - name: Job-1 Step-1
+            run: echo $ENV_VARIABLE_1
+    
+          - name: Job-1 Step-2
+            run: |
+              echo $ENV_VARIABLE_3
+
+      job2: ### Workflow job name "job2"
+        runs-on: self-hosted
+
+        env:
+          ENV_VARIABLE_5: value_5
+
+        steps:
+
+          - name: Job-2 Step-1
+            run: |
+              echo $ENV_VARIABLE_2
+
+          - name: Job-2 Step-2
+            run: |
+              echo $ENV_VARIABLE_4
+
+
+
+
+    
+    
