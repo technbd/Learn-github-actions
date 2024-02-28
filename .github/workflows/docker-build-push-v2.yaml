@@ -1,6 +1,6 @@
 ### Metadata: 
-    name: Docker-build-push
-    run-name: ${{ github.actor }} is Docker-build-push-CI
+    name: Docker-build-push-v2
+    run-name: ${{ github.actor }} is Docker-build-push-v2-CI
     
     on: 
       push:
@@ -12,6 +12,7 @@
       ### Allows you to run this workflow manually from the Actions tab
       workflow_dispatch:
 
+    ### Global environment variables:
     env: 
       DOCKER_REPO: technbd
       IMAGE_NAME: nginx
