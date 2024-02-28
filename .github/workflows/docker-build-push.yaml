@@ -33,7 +33,7 @@
           ### An optional "name" attribute and used to identify each action:
           - name: Login Docker Hub
             run: |
-              docker login -u ${ secrets.DOCKER_USERNAME } -p ${ secrets.DOCKER_TOKEN }
+              docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
           
           - name: Build and push Docker image 
             env: 
