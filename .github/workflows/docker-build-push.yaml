@@ -1,0 +1,47 @@
+### Metadata: 
+    name: Docker-project
+    run-name: ${{ github.actor }} is Docker-project CI
+    
+    on: 
+      push:
+        branches:
+          - master
+      # pull_request:
+      #   branches: [ "master" ]
+      
+      ### Allows you to run this workflow manually from the Actions tab
+      workflow_dispatch:
+
+    ### A workflow run is made up of one or more jobs that can run sequentially or in parallel:
+    jobs:
+      docker-build: ### Workflow job name "job1":
+    
+        runs-on: self-hosted
+    
+        ### Steps represent a sequence of tasks that will be executed as part of the job:
+        steps:
+
+          ### Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it:
+          - name:  Check out repository
+            uses: actions/checkout@v3
+    
+          - name:  Listing contents ### Runs a set of commands:
+            run: |
+              pwd
+              ls 
+
+          ### An optional "name" attribute and used to identify each action:
+          - name: Build the Docker image ### Run a one-line script:
+            run: docker build -t nginx:v1 .
+    
+          - name: Docker image Push  ### Runs a set of commands: 
+            shell: bash
+            run: |
+              docker -v
+              echo "Docker push...done"
+    
+
+    
+
+    
+    
